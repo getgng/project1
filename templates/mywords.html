@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mywords</title>
+	<center>
+		<header><h1><u>The Message</u></h1></header>
+	</center>
+	<link rel="stylesheet" type="text/css" href="Events.css">
+</head>	
+<form  id="RForm" class="simpleForm" action="{% url 'mywordscount'%}">  <!-- This 'mywordscount'(This mywordscount is name of the result page, once we go for Count Words button) value we will pass through Django to url.py page.  -->
+		
+		<h4><u>Write your words</u></h4>
+		<table>
+		<tr>
+        	<td><textarea name="mymessage" rows=10 cols=50 placeholder="Type your message here."></textarea></td>
+    	<tr>
+        	
+    	<tr>
+    		<td><input type="submit" id="SButton" value="Count Words"></td>
+        	<td><input type="reset" id="RButton" value="Reset"></td>
+    	</tr>
+
+	</form>
+<body>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<center>
+		<header><h1><u>Register</u></h1></header>
+	</center>
+	<link rel="stylesheet" type="text/css" href="Events.css">
+</head>	
+<form  id="RForm" class="simpleForm" onsubmit="return validation()">
+		<h4><u>Create Account</u></h4>
+		<table>
+		<tr>
+        	<td><label for="NBox">Name:</label></td>
+        	<td><input type="text" id="NBox" placeholder="Name" name="name"></td>
+        </tr>	<!-- for in lable should bbe equal to id of input, so that the user entered value will be stored to Name. -->
+
+    	<tr>
+        	<td><label for="UBox">Username:</label></td>
+        	<td><input type="text" id="UBox" placeholder="User Name" name="Uname"></td>
+        </tr>
+
+        <tr>
+			<td><label>Gender:</label></td>
+		    <td>Male<input type="radio" id="GradioM" name="gender" value="male">		<!-- name should be same, to group the radio buttons. -->
+            Female<input type="radio" id="GradioF" name="gender" value="female"></td>
+        </tr>
+
+        <tr>
+        	<td><label for="sl1">Country:</label></td>
+        	<td><select id="sl1" onchange="populate()">		<!-- //onchange method is to create cascade select boxes. This populate() funtion wll be called when option is selected. -->
+           		<option >Select</option>
+            	<option >India</option>
+            	<option >USA</option>
+            	</select></td>
+        </tr>
+        
+        <tr>
+        	<td><label for="sl2">State:</label></td>
+        	<td><select id="sl2" name="slct2">
+             	<option >Select</option>
+             	</select></td>
+        </tr>
+
+        <tr>
+        	<td><label for="SBox">Skills:</label></td>
+        	<td><input type="text" id="SBox"  name="skills"  placeholder="Skills"></td>
+    	</tr>
+
+    	<tr>
+    		<td><label for="PBox">Phone Number:</label></td>
+    		<td><input type="tel" id="PBox" placeholder="Phone Number" name="phone"  placeholder="Phone Number"></td>
+    	</tr>
+
+    	<tr></tr>
+    	<tr></tr>
+    	<tr></tr>
+
+    	<tr>
+    		<td><input type="submit" id="SButton" value="Send"></td><!-- <button id="SButton">Submit</button> -->		<!-- calling 'validation()' function, when we click the 'Submit' button-->
+                     <!-- <button id="SButton" onclick="validation()">Submit</button>		 we can call 'validation()' function even assigning with this Button Click, when we click the 'Submit' button -->
+        	<td><input type="reset" id="RButton" value="Reset"></td>
+    	</tr>
+
+	</form>
+<body>
+
+
+
+</body>
+<script type="text/javascript">
+
+	//Function for check validations for the Form
+function validation()	//this Function is to validate the FORM inputs
+	{
+        var Uname=document.getElementById("NBox").value
+        var Uuname=document.getElementById("UBox").value
+		var UgM=document.getElementById("GradioM").checked
+        var UgF=document.getElementById("GradioF").checked
+        var ctry=document.getElementById("sl1").value;
+        var st=document.getElementById("sl2").value;
+		var Uskills=document.getElementById("SBox").value
+		var Uphone=document.getElementById("PBox").value
+		
+
+			//to check Name box
+			if(Uname=="")		//to check whether the field is filled or not
+			{ //here no need of "{"" and "}" because the IF statement has only one statement. if it contains multile the curly braces must.
+			alert("Please enter your Name")
+			}
+			if(!(isNaN(Uname)))		//to check whether the field contains only alphabets or not
+                alert("Please enter only alphabets in Name field")
+                
+            //to check User Name
+            if(Uuname=="")		//to check whether the field is filled or not
+			    alert("Please enter your User Name")
+			
+			if(!(isNaN(Uuname)))		//to check whether the field contains only alphabets or not
+			    alert("Please enter only alphabets in User Name field")
+			
+			//to check radio buttons Gender is selcted or not.
+			if((UgM=="")&&(UgF==""))
+                alert("Please select gender")
+                
+            //to check wheteher country field selected or not
+            if(ctry=="Select")		//if country is not selected by user, the value would be'Select'
+                alert("Please enter your Country")
+                
+                //to check wheteher Sate field selected or not
+            if(st=="Select")		//if State is not selected by user, the value would be'Select'
+			    alert("Please enter your State")
+			
+			//to check Marks box
+			if(Uskills=="")		//to check whether the field is filled or not
+				alert("Please enter your Marks")
+			
+			//to check Phone box
+			if(Uphone=="")		//to check whether the field is filled or not
+				alert("Please enter your Phone Number")
+			
+			if(isNaN(Uphone))	//to check whether the field contains only numbers or not
+				alert("Please enter only numbers in Phone field")
+			
+obj();          // calling this function obj() in this function validation(), on Form submission. this how multiple funtins will be called.
+                //I think the Object should be created at last, once the user provide all inputs.
+
+    }
+    
+function populate()     //it is a funtion to create cascading select. This funtion is called when SELECT element is selected. In this Country.
+    {
+	var ctry=document.getElementById("sl1").value;
+	
+	if(ctry==="India")
+		var array=["Select","Maharastra","AP","Tamilnadu"];
+	else 	
+	if(ctry==="USA")
+		var array=["Select","Origon","Washington","Texas"];
+	else
+        var array=[];
+        
+	var st="";
+	for(i=0;i<array.length;i++)
+	{	
+		st=st+"<option>"+array[i]+"</option>";
+	}
+	st="<select name='sl2'>"+st+"</select>";
+    document.getElementById("sl2").innerHTML=st
+    }
+
+function obj()      //it is a function to create Object with the user inputs
+	{
+        var Uname=document.getElementById("NBox").value;
+        var Uuname=document.getElementById("UBox").value
+	var gnd, gndv                                               //to get Male or Female value
+		var gnd=document.getElementById("GradioM").checked;
+		if (gnd==true) 
+            gndv = "Male";
+        else 
+            gndv = "Female";
+        var ctry=document.getElementById("sl1").value;
+        var st=document.getElementById("sl2").value;
+		var Uskills=document.getElementById("SBox").value;
+        var Uphone=document.getElementById("PBox").value;
+   
+   var person=new Object();     //creating Object.
+   person.name=Uname;
+   person.username=Uuname;
+   person.gender=gndv;
+   person.country=ctry;
+   person.state=st;
+   person.skills=Uskills;
+   person.phone=Uphone;
+//    return person;
+
+   document.write("Name: "+Uname+"</br>"+"User Name: "+Uuname+"</br>"+"Gender: "+gndv+"</br>"+"Country: "+ctry+"</br>"+"State: "+st+"</br>"+"Skills: "+Uskills+"</br>"+"Phone Number: "+Uphone+"<br>") 
+   console.log(person)
+// var oj=obj()
+        }
+
+	
+</script>
+</html>
